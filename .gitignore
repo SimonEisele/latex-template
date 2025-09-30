@@ -12,6 +12,13 @@
 *.blg
 *.synctex.gz
 *.run.xml
+*.acn
+
+# Glossary / Index files
+*.glo
+*.acn
+*.ist
+*.gls
 
 # PDF output (optional)
 *.pdf
