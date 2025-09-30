@@ -6,14 +6,14 @@
 \usepackage[english]{babel}
 
 % --- Recommended for biblatex ---
-\usepackage{csquotes} % <<< Wichtig für Zitate
+\usepackage{csquotes} % wichtig für korrekte Zitate
 
 % --- Page layout ---
 \usepackage{geometry}
 \geometry{a4paper, margin=2.5cm}
 
-% --- Margin fix for todonotes ---
-\setlength{\marginparwidth}{2cm} % Wichtig für todonotes
+% --- ToDo notes (mit Margin-Fix) ---
+\setlength{\marginparwidth}{2cm} % verhindert Überlappung
 \usepackage[colorinlistoftodos]{todonotes}
 
 % --- Graphics & Tables ---
@@ -25,6 +25,13 @@
 % --- Math ---
 \usepackage{amsmath, amssymb}
 \usepackage{siunitx}
+
+% --- TikZ & Plots ---
+\usepackage{tikz}
+\usepackage{circuitikz} % für Schaltpläne
+\usepackage{pgfplots}   % für Diagramme
+\usepackage{pgf-pie}
+\pgfplotsset{compat=1.18} % aktuelle Version einstellen
 
 % --- Hyperlinks & references ---
 \usepackage{hyperref}
@@ -38,9 +45,6 @@
 \usepackage[acronym]{glossaries}
 \input{glossary.tex}
 \makeglossaries
-
-% --- ToDo notes ---
-\usepackage[colorinlistoftodos]{todonotes}
 
 % --- Custom commands ---
 \newcommand{\vect}[1]{\mathbf{#1}}
