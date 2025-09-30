@@ -1,0 +1,17 @@
+# LaTeX auxiliary files
+*.aux
+*.log
+*.out
+*.toc
+*.lof
+*.lot
+*.fls
+*.fdb_latexmk
+*.bbl
+*.bcf
+*.blg
+*.synctex.gz
+*.run.xml
+
+# PDF output (optional)
+*.pdf

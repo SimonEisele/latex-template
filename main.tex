@@ -1,0 +1,77 @@
+\documentclass[a4paper,12pt]{report}
+
+% --- Encoding & Language ---
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[english]{babel}
+
+% --- Recommended for biblatex ---
+\usepackage{csquotes} % <<< Wichtig für Zitate
+
+% --- Page layout ---
+\usepackage{geometry}
+\geometry{a4paper, margin=2.5cm}
+
+% --- Margin fix for todonotes ---
+\setlength{\marginparwidth}{2cm} % Wichtig für todonotes
+\usepackage[colorinlistoftodos]{todonotes}
+
+% --- Graphics & Tables ---
+\usepackage{graphicx}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{booktabs}
+
+% --- Math ---
+\usepackage{amsmath, amssymb}
+\usepackage{siunitx}
+
+% --- Hyperlinks & references ---
+\usepackage{hyperref}
+\usepackage{cleveref}
+
+% --- Bibliography ---
+\usepackage[backend=biber,style=ieee]{biblatex}
+\addbibresource{references.bib}
+
+% --- Glossary ---
+\usepackage[acronym]{glossaries}
+\input{glossary.tex}
+\makeglossaries
+
+% --- ToDo notes ---
+\usepackage[colorinlistoftodos]{todonotes}
+
+% --- Custom commands ---
+\newcommand{\vect}[1]{\mathbf{#1}}
+\newcommand{\TODO}[1]{\todo{#1}}
+
+% --- Title ---
+\title{Master Technical Report Template}
+\author{John Doe}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+\tableofcontents
+\listoffigures
+\listoftables
+\printglossaries
+
+% --- Chapters ---
+\chapter{Introduction}
+\input{chapters/introduction.tex}
+
+\chapter{Methods}
+\input{chapters/methods.tex}
+
+\chapter{Results}
+\input{chapters/results.tex}
+
+\chapter{Conclusion}
+\input{chapters/conclusion.tex}
+
+\printbibliography
+
+\end{document}
