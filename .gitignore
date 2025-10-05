@@ -20,5 +20,8 @@
 *.ist
 *.gls
 
-# PDF output (optional)
+# PDF output
 *.pdf
+
+# Bib files
+*.bib
