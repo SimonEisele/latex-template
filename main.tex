@@ -2,81 +2,22 @@
 \PassOptionsToPackage{table}{xcolor}
 \documentclass[
   a4paper,
+  bibliography=totoc,
+  listof=totoc,
   invert-title,
   titleimage-ratio=13
 ]{bfhpub}
 
 \usepackage[french,english,main=ngerman]{babel}  % https://www.namsu.de/Extra/pakete/Babel.html
 \LoadBFHModule{listings,terminal,boxes}
+
 %---------------------------------------------------------------------------
 % Documents paths
 %---------------------------------------------------------------------------
 \makeatletter
 \def\input@path{{content/}}
-%or: \def\input@path{{/path/to/folder/}{/path/to/other/folder/}}
 \makeatother
-%-----------------  Base packages     --------------------------------------
-% Include Packages
-\usepackage{amsmath}          % various features to facilitate writing math formulas
-\usepackage{amsthm}           % enhanced version of latex's newtheorem
-\usepackage{amsfonts}         % set of miscellaneous TeX fonts that augment the standard CM
-\usepackage{amssymb}          % mathematical special characters
 
-\usepackage{siunitx}
-
-\usepackage{graphicx}         % integration of images
-\usepackage{float}            % floating objects
-
-\usepackage{caption}          % for captions of figures and tables
-\usepackage{subcaption}       % for subcaptions in subfigures
-\usepackage{cite}             % use bibtex
-\usepackage{wrapfig}
-
-\usepackage{exscale}          % mathematical size corresponds to textsize
-\usepackage{multirow}         % multirow emables combining rows in tables
-\usepackage{multicol}
-
-\usepackage{longtable}
-\usepackage{adjustbox}
-
-%---------------------------------------------------------------------------
-% Graphics paths
-%---------------------------------------------------------------------------
-\graphicspath{{pictures/}{figures/}}
-%---------------------------------------------------------------------------
-% Blind text -> for dummy text
-%---------------------------------------------------------------------------
-\usepackage{blindtext}    
-\usepackage{letltxmacro}   
-\LetLtxMacro{\blindtextblindtext}{\blindtext}
-
-\RenewDocumentCommand{\blindtext}{O{\value{blindtext}}}{
-	\begingroup\color{BFH-Gray}\blindtextblindtext[#1]\endgroup
-}
-%---------------------------------------------------------------------------
-% Glossary Package
-%---------------------------------------------------------------------------
-% the glossaries package uses makeindex
-% if you use TeXnicCenter do the following steps:
-%  - Goto "Ausgabeprofile definieren" (ctrl + F7)
-%  - Select the profile "LaTeX => PDF"
-%  - Add in register "Nachbearbeitung" a new "Postprozessoren" point named Glossar
-%  - Select makeindex.exe in the field "Anwendung" ( ..\MiKTeX x.x\miktex\bin\makeindex.exe )
-%  - Add this [ -s "%tm.ist" -t "%tmx.glg" -o "%tm.gls" "%tm.glo" ] in the field "Argumente"
-%
-% for futher informations go to http://ewus.de/tipp-1029.html
-%---------------------------------------------------------------------------
-\usepackage[nonumberlist]{glossaries-extra}
-\makeglossaries
-\input{content/glossary}
-%---------------------------------------------------------------------------
-% Makeindex Package
-%---------------------------------------------------------------------------
-\usepackage{makeidx}
-\makeindex
-%\usepackage{imakeidx}          % To produce index
-%\makeindex[columns=2,intoc]    % Index-Initialisation
-%\makeindex[columns=3,columnseprule,columnsep,intoc]
 %---------------------------------------------------------------------------
 % Hyperref Package (Create links in a pdf)
 %---------------------------------------------------------------------------
@@ -95,42 +36,70 @@
 	,urlcolor=.
 	,citecolor=.
 ]{hyperref}
-%---------------------------------------------------------------------------
 
-%% %% Customize Footer and Headers in Document
-%% \KOMAoptions{headsepline,plainheadsepline,footsepline,plainfootsepline}%
-%% \setkomafont{headsepline}{\color{BFH-DarkBlue}}% BFH-DarkBlue required bfhcolors
-%% \setkomafont{footsepline}{\color{BFH-DarkBlue}}%
-%% \lehead*{lehead} % the * character does replace the header on the first chapter page as well
-%% \cehead*{cehead}
-%% \rehead*{rehead}
-%% \lohead*{lohead}
-%% \cohead*{cohead}
-%% \rohead*{rohead}
-
-%% \lefoot*{lefoot}
-%% \cefoot*{cefoot}
-%% \refoot*{refoot}
-%% \lofoot*{lofoot}
-%% \cofoot*{cofoot}
-%% \rofoot*{rofoot}
 %---------------------------------------------------------------------------
+% Base packages
+%---------------------------------------------------------------------------
+% Include Packages
+\usepackage{amsmath}          % various features to facilitate writing math formulas
+\usepackage{amsthm}           % enhanced version of latex's newtheorem
+\usepackage{amsfonts}         % set of miscellaneous TeX fonts that augment the standard CM
+\usepackage{amssymb}          % mathematical special characters
+
+\usepackage{siunitx}
+
+\usepackage{graphicx}         % integration of images
+\usepackage{float}            % floating objects
+
+\usepackage{caption}          % for captions of figures and tables
+\usepackage{subcaption}       % for subcaptions in subfigures
+\usepackage{wrapfig}
+
+\usepackage{exscale}          % mathematical size corresponds to textsize
+\usepackage{multirow}         % multirow emables combining rows in tables
+\usepackage{multicol}
+
+\usepackage{longtable}
+\usepackage{adjustbox}
+
+%---------------------------------------------------------------------------
+% Graphics paths
+%---------------------------------------------------------------------------
+\graphicspath{{pictures/}{figures/}}
+
+%---------------------------------------------------------------------------
+% Blind text -> for dummy text
+%---------------------------------------------------------------------------
+\usepackage{blindtext}    
+\usepackage{letltxmacro}   
+\LetLtxMacro{\blindtextblindtext}{\blindtext}
+
+\RenewDocumentCommand{\blindtext}{O{\value{blindtext}}}{
+	\begingroup\color{BFH-Gray}\blindtextblindtext[#1]\endgroup
+}
+
+%---------------------------------------------------------------------------
+% Bibliography Package
+%---------------------------------------------------------------------------
+\usepackage{csquotes}
+\usepackage[backend=biber,style=ieee]{biblatex}
+\addbibresource{references.bib}
+
+%---------------------------------------------------------------------------
+% Glossary Package
+%---------------------------------------------------------------------------
+\usepackage[nonumberlist, acronym]{glossaries-extra}
+\setabbreviationstyle[acronym]{long-short}
+\makeglossaries
+\input{content/glossary.tex}
+
+%---------------------------------------------------------------------------
+% Makeindex Package
+%---------------------------------------------------------------------------
+\usepackage{makeidx}
+\makeindex
+
 \begin{document}
-
-%% Snippet do redefine German babel translations -- see FAQ latex.ti.bfh.ch for further information or
-%% the package documentation https://www.ctan.org/pkg/translations
-%% \redefinetranslation{German}{Advisor}{Dozentin}
-%% \redefinetranslation{German}{advisor}{Dozentin} %  just for consistency
-%% \redefinetranslation{German}{Author}{Autorin}
-%% \redefinetranslation{German}{author}{Autorin} %  just for consistency
-%% \redefinetranslation{German}{Co-advisor}{Mitbetreuerin}
-%% \redefinetranslation{German}{co-advisor}{Mitbetreuerin} %  just for consistency
-%% \redefinetranslation{German}{Expert}{Expertin}
-%% \redefinetranslation{German}{expert}{Expertin} %  just for consistency
-%% \redefinetranslation{German}{Project partner}{Projektpartnerin}
-%% \redefinetranslation{German}{project partner}{Projektpartnerin} %  just for consistency
-%------------ Translations -------------------------------------------------------------------------------------------------------------------------------
-%------------ Additional commands ------------------------------------------------------------------------------------------------------------------------
 
 %------------ START FRONT PART ---------------------------------------------------------------------------------------------------------------------------
 \frontmatter % Nummerierung der Seiten in römischen Zahlen
@@ -143,56 +112,68 @@
   \institute{Elektrotechnik und Informationstechnologie}
   \version{1.0}
   \titlegraphic{\includegraphics{Bild1.png}}
+  \partnerlogo{\includegraphics[height=\height]{bfh-logo.pdf}}
+
   \maketitle
 
-%------------ ABSTRACT        ----------------
-\section{Abstract}
-\include{content/abstract}
+%----------------  Abstract   ----------------------------------------------
+\section*{Abstract}
+\addcontentsline{toc}{section}{Abstract}
+\input{content/abstract}
+\thispagestyle{plain}
 
-%------------ TABLEOFCONTENTS ----------------
+%----------------  Table of contents   -------------------------------------
+\clearpage
 \tableofcontents
 
-%------------ START MAIN PART ------------
-\mainmatter
+%------------ START MAIN PART ----------------------------------------------------------------------------------------------------------------------------
+\mainmatter % Beginn mit normaler Nummerierung der Seiten
 
-%------------ Introduction ------------
+%----------------  Introduction   ------------------------------------------
 \clearpage
 \section{Einleitung}
 \input{content/introduction}
 
+%----------------  Methods   -----------------------------------------------
 \clearpage
 \section{Methoden und Materialien}
+\input{content/methods.tex}
 
+%----------------  Results   -----------------------------------------------
 \clearpage
 \section{Resultate}
 \input{content/results.tex}
 
+%----------------  Discussion   --------------------------------------------
 \clearpage
 \section{Diskussion}
 \input{content/discussion.tex}
-%------------ Authorship declaration translated to main language ------------
-%\declarationOfAuthorship
 
-%----------- Bibliography ----------------
+%----------------  Bibliography   ------------------------------------------
 \clearpage
-\bibliographystyle{unsrt}
-\bibliography{project}      % the project.bib file gets loaded
+\printbibliography
 
-%------------ List of Figures ------------
+%----------------  List of figures   ---------------------------------------
+\clearpage
 \listoffigures
  
-%------------ List of Tables -------------
+%----------------  List of tables   ----------------------------------------
+\clearpage
 \listoftables
- 
-%------------ List of Listings -----------
-\lstlistoflistings 
- 
-%------------ Glossary -------------------
-\printglossary
+
+%----------------  List of listings   --------------------------------------
+%\clearpage
+%\lstlistoflistings 
+
+%----------------  Glossary and acronyms  ----------------------------------
+\clearpage
+\printglossary[type=main]
+\printglossary[type=acronym]
 
 %------------ Index ----------------------
 \clearpage
 \printindex
+
 %------------ Appendix ----------------	
 \appendix
 %\chapter{First Appendix Chapter}
