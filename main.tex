@@ -1,20 +1,12 @@
 %============================ MAIN DOCUMENT ================================
-% define document class
 \PassOptionsToPackage{table}{xcolor}
 \documentclass[
   a4paper,
-  BCOR=15mm,            % Binding correction
-  twoside,
-% openright,
-%  headings=openright,
-  bibliography=totoc,   % If enabled add bibliography to TOC
-  listof=totoc,         % If enabled add lists to TOC
-  monolingual,
-% bilingual,
   invert-title,
-]{bfhthesis}
+  titleimage-ratio=13
+]{bfhpub}
 
-\usepackage[french,ngerman,main=english]{babel}  % https://www.namsu.de/Extra/pakete/Babel.html
+\usepackage[french,english,main=ngerman]{babel}  % https://www.namsu.de/Extra/pakete/Babel.html
 \LoadBFHModule{listings,terminal,boxes}
 %---------------------------------------------------------------------------
 % Documents paths
@@ -45,6 +37,7 @@
 \usepackage{multicol}
 
 \usepackage{longtable}
+\usepackage{adjustbox}
 
 %---------------------------------------------------------------------------
 % Graphics paths
@@ -91,7 +84,7 @@
 	,bookmarks
 	,plainpages=false
 	,pdfpagelabels
-        ,pdfusetitle
+    ,pdfusetitle
 	,backref = {false}          % No index backreference
 	,colorlinks = {true}        % Color links in a PDF
 	,hypertexnames = {true}     % no failures "same page(i)"
@@ -136,34 +129,25 @@
 %% \redefinetranslation{German}{expert}{Expertin} %  just for consistency
 %% \redefinetranslation{German}{Project partner}{Projektpartnerin}
 %% \redefinetranslation{German}{project partner}{Projektpartnerin} %  just for consistency
+%------------ Translations -------------------------------------------------------------------------------------------------------------------------------
+%------------ Additional commands ------------------------------------------------------------------------------------------------------------------------
 
-%------------ START FRONT PART ------------
-\frontmatter
-
-\title{Bachelor's Thesis}
-\subtitle{Thesis subject}
-\author{Anton Muster \and Cindy Example}
-\institution{Bern University of Applied Sciences}
-\department{Technik und Informatik}
-\institute{Mikro- und Medizintechnik}
-\version{1.0}
-\titlegraphic*{\includegraphics{Bild1.png}}
-\advisor{Prof. Dr. Super Smart}
-\coadvisor{PhD A. Smart}
-\projectpartner{proj partner}
-\expert{Some expert}
-\degreeprogram{Bachelor of Science in Computer Science}
-\setupSignature{
-	A. Muster={\includegraphics[width=.5\linewidth]{sig_muster}},
-	C. Example={\includegraphics[width=.5\linewidth]{sig_example}}
-}
-
+%------------ START FRONT PART ---------------------------------------------------------------------------------------------------------------------------
+\frontmatter % Nummerierung der Seiten in römischen Zahlen
 
 %----------------  BFH tile page   -----------------------------------------
-\maketitle
+  \title{Projekt 4: Kombinatorische Logik}
+  \subtitle{BTE5213 Laborprojekte, Herbstsemester 2025/2026\\Protokoll}
+  \author{Janis Aebischer \and Simon Eisele}
+  \department{Technik und Informatik}
+  \institute{Elektrotechnik und Informationstechnologie}
+  \version{1.0}
+  \titlegraphic{\includegraphics{Bild1.png}}
+  \maketitle
+
 %------------ ABSTRACT        ----------------
-\addchap{Abstract}
-\input{content/abstract}
+\section{Abstract}
+\include{content/abstract}
 
 %------------ TABLEOFCONTENTS ----------------
 \tableofcontents
@@ -171,17 +155,23 @@
 %------------ START MAIN PART ------------
 \mainmatter
 
-\chapter{First Thesis Chapter}
+%------------ Introduction ------------
+\clearpage
+\section{Einleitung}
 \input{content/introduction}
-\input{content/methods}
-\input{content/results}
 
-\chapter{Second Thesis Chapter}
-\input{content/expl_fragments}
-\input{content/discussion}
+\clearpage
+\section{Methoden und Materialien}
 
+\clearpage
+\section{Resultate}
+\input{content/results.tex}
+
+\clearpage
+\section{Diskussion}
+\input{content/discussion.tex}
 %------------ Authorship declaration translated to main language ------------
-\declarationOfAuthorship
+%\declarationOfAuthorship
 
 %----------- Bibliography ----------------
 \clearpage
@@ -205,6 +195,6 @@
 \printindex
 %------------ Appendix ----------------	
 \appendix
-\chapter{First Appendix Chapter}
+%\chapter{First Appendix Chapter}
 
 \end{document}
